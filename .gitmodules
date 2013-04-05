@@ -1,0 +1,3 @@
+[submodule "bundle/syntax_opengl"]
+	path = bundle/syntax_opengl
+	url = git://github.com/beyondmarc/opengl.vim.git
