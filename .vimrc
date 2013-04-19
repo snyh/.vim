@@ -6,6 +6,12 @@ call pathogen#infect()
 set history=700
 set autochdir
 
+setlocal spell spelllang=en_us
+hi SpellBad guisp=red gui=undercurl guifg=NONE guibg=NONE ctermfg=red ctermbg=NONE term=underline cterm=underline
+hi SpellCap guisp=yellow gui=undercurl guifg=NONE guibg=NONE ctermfg=yellow ctermbg=NONE term=underline cterm=underline
+hi SpellRare guisp=blue gui=undercurl guifg=NONE guibg=NONE ctermfg=yellow ctermbg=NONE term=underline cterm=underline
+hi SpellLocal guisp=orange gui=undercurl guifg=NONE guibg=NONE ctermfg=yellow ctermbg=NONE term=underline cterm=underline
+
 " Enable filetype plugin
 filetype plugin on
 filetype indent on
@@ -26,7 +32,7 @@ nmap <leader>w :w!<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 7 lines to the curors - when moving vertical..
+" Set 7 lines to the cursors - when moving vertical..
 set so=7
 
 
@@ -40,14 +46,14 @@ set nolazyredraw "Don't redraw while executing macros
 
 set magic "Set magic on, for regular expressions
 
-set showmatch "Show matching bracets when text indicator is over them
+set showmatch "Show matching brackets when text indicator is over them
 set mat=2 "How many tenths of a second to blink
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax enable "Enable syntax hl
+syntax enable "Enable syntax highlight
 
 set encoding=utf8
 
@@ -56,7 +62,7 @@ set ffs=unix,dos,mac "Default file types
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git anyway...
+" Turn backup off, since most stuff is in svn, git anyway...
 set nobackup
 set nowb
 set noswapfile
@@ -74,7 +80,7 @@ set lbr
 set tw=500
 
 set ai "Auto indent
-set si "Smart indet
+set si "Smart indent
 set wrap "Wrap lines
 
 
@@ -113,7 +119,7 @@ map <leader>bd :Bclose<cr>
 " Close all the buffers
 map <leader>ba :1,300 bd!<cr>
 
-" Use the arrows to something usefull
+" Use the arrows to something useful
 map <right> :bn<cr>
 map <left> :bp<cr>
 
@@ -226,7 +232,7 @@ inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 """"""""""""""""""""""""""""""
 " => C section
 """"""""""""""""""""""""""""""
-au FileType c nmap <buffer>  <F2> :!clear;tcc -run `pkg-config --libs-only-l --cflags-only-I gtk+-3.0 dbus-glib-1 gio-2.0 ` -lsqlite3 -lxcb %<CR>
+au FileType c nmap <buffer>  <F2> :!clear;tcc -run `pkg-config --libs-only-l --cflags-only-I gtk+-3.0 dbus-glib-1 gio-2.0 ` -lsqlite3 -lX11 -lXext -lxcb -lGLEW -lglfw %<CR>
 
 au FileType go nmap <buffer>  <F2> :!clear;go run %<CR>
 
