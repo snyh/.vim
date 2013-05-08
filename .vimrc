@@ -232,7 +232,7 @@ inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 """"""""""""""""""""""""""""""
 " => C section
 """"""""""""""""""""""""""""""
-au FileType c nmap <buffer>  <F2> :!clear;tcc -run `pkg-config --libs-only-l --cflags-only-I gtk+-3.0 dbus-glib-1 gio-2.0 ` -lsqlite3 -lX11 -lXext -lxcb -lGLEW -lglfw %<CR>
+au FileType c nmap <buffer>  <F2> :!clear;tcc -run `pkg-config --libs-only-l --cflags-only-I gtk+-3.0 dbus-glib-1 gio-2.0 ` -lsqlite3 -lX11 -lXext -lxcb -lGLEW %<CR>
 
 au FileType go nmap <buffer>  <F2> :!clear;go run %<CR>
 
