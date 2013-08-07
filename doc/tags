@@ -37,10 +37,14 @@
 'Tlist_WinHeight'	taglist.txt	/*'Tlist_WinHeight'*
 'Tlist_WinWidth'	taglist.txt	/*'Tlist_WinWidth'*
 'loaded_nerd_comments'	NERD_commenter.txt	/*'loaded_nerd_comments'*
+:Ack	ack.txt	/*:Ack*
+:AckAdd	ack.txt	/*:AckAdd*
 :CoffeeCompile	coffee-script.txt	/*:CoffeeCompile*
 :CoffeeLint	coffee-script.txt	/*:CoffeeLint*
 :CoffeeMake	coffee-script.txt	/*:CoffeeMake*
 :CoffeeRun	coffee-script.txt	/*:CoffeeRun*
+:LAck	ack.txt	/*:LAck*
+:LAckAdd	ack.txt	/*:LAckAdd*
 :TlistAddFiles	taglist.txt	/*:TlistAddFiles*
 :TlistAddFilesRecursive	taglist.txt	/*:TlistAddFilesRecursive*
 :TlistClose	taglist.txt	/*:TlistClose*
@@ -130,6 +134,9 @@ VimExplorer-tempmark	vimExplorer.txt	/*VimExplorer-tempmark*
 VimExplorer-todo	vimExplorer.txt	/*VimExplorer-todo*
 VimExplorer-treebrowse	vimExplorer.txt	/*VimExplorer-treebrowse*
 VimExplorer-treehotkey	vimExplorer.txt	/*VimExplorer-treehotkey*
+ack	ack.txt	/*ack*
+ack-author	ack.txt	/*ack-author*
+ack.txt	ack.txt	/*ack.txt*
 coffee-script	coffee-script.txt	/*coffee-script*
 coffee-script-author	coffee-script.txt	/*coffee-script-author*
 coffee-script-commands	coffee-script.txt	/*coffee-script-commands*

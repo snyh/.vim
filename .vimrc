@@ -1,6 +1,24 @@
-call pathogen#incubate()
-call pathogen#helptags()
-call pathogen#infect()
+set nocompatible
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
+"---------------------begin of vundle -------------------
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'ctrlp.vim'
+Bundle 'opengl.vim'
+Bundle 'OpenGLSL'
+Bundle 'Valloric/YouCompleteMe'
+
+filetype plugin indent on
+"----------------------end of vundle----------------------
+
 
 " Sets how many lines of history VIM has to remember
 set history=700
@@ -12,17 +30,9 @@ hi SpellCap guisp=yellow gui=undercurl guifg=NONE guibg=NONE ctermfg=yellow cter
 hi SpellRare guisp=blue gui=undercurl guifg=NONE guibg=NONE ctermfg=yellow ctermbg=NONE term=underline cterm=underline
 hi SpellLocal guisp=orange gui=undercurl guifg=NONE guibg=NONE ctermfg=yellow ctermbg=NONE term=underline cterm=underline
 
-" Enable filetype plugin
-filetype plugin on
-filetype indent on
-
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -278,12 +288,6 @@ endif
 nmap <leader>rfc :e /usr/share/doc/rfc/txt/rfc
 
 nmap <leader>x :Tlist<cr>
-
-
-source ~/.vim/autotag.vim
-
-
-let g:ProjTags=["/home/snyh/.vimwork/"]
 
 
 set showtabline=2  " 0, 1 or 2; when to use a tab pages line
