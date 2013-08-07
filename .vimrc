@@ -27,14 +27,11 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set 7 lines to the cursors - when moving vertical..
 set so=7
-
 
 set ignorecase "Ignore case when searching
 set smartcase
@@ -95,33 +92,6 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 " When you press gv you vimgrep after the selected text
 vnoremap <silent> gv :call VisualSearch('gv')<CR>
 map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Moving around, tabs and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-imap <C-L> <ESC>la
-imap <C-H> <ESC>ha
-imap <C-J> <ESC>ja
-imap <C-K> <ESC>ka
-
-
-" Smart way to move btw. windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-" Close the current buffer
-map <leader>bd :Bclose<cr>
-
-" Close all the buffers
-map <leader>ba :1,300 bd!<cr>
-
-" Use the arrows to something useful
-map <right> :bn<cr>
-map <left> :bp<cr>
 
 " Tab configuration
 map <leader>tn :tabnew<cr>
@@ -232,9 +202,11 @@ inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 """"""""""""""""""""""""""""""
 " => C section
 """"""""""""""""""""""""""""""
-au FileType c nmap <buffer>  <F2> :!clear;tcc -run `pkg-config --libs-only-l --cflags-only-I gtk+-3.0 dbus-glib-1 gio-2.0 ` -lsqlite3 -lX11 -lXext -lxcb -lGLEW %<CR>
+au FileType c nmap <buffer>  <F2> :!clear;tcc -run `pkg-config --libs-only-l --cflags-only-I gtk+-3.0 dbus-glib-1 gio-2.0 gstreamer-1.0` -lsqlite3 -lX11 -lXext -lxcb -lGLEW %<CR>
 
 au FileType go nmap <buffer>  <F2> :!clear;go run %<CR>
+
+au FileTYpe dot nmap <buffer> <F2> :!dot -Tjpg % -o %."jpg"<CR>
 
 
 """"""""""""""""""""""""""""""
@@ -312,94 +284,6 @@ source ~/.vim/autotag.vim
 
 
 let g:ProjTags=["/home/snyh/.vimwork/"]
-
-if has("cscope")
-
-    """"""""""""" Standard cscope/vim boilerplate
-
-    " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
-    set cscopetag
-
-    " check cscope for definition of a symbol before checking ctags: set to 1
-    " if you want the reverse search order.
-    set csto=0
-
-    " add any cscope database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out  
-    " else add the database pointed to by environment variable 
-    elseif $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    endif
-
-    " show msg when any other cscope db added
-    set cscopeverbose  
-
-
-    " The following maps all invoke one of the following cscope search types:
-    "
-    "   's'   symbol: find all references to the token under cursor
-    "   'g'   global: find global definition(s) of the token under cursor
-    "   'c'   calls:  find all calls to the function name under cursor
-    "   't'   text:   find all instances of the text under cursor
-    "   'e'   egrep:  egrep search for the word under cursor
-    "   'f'   file:   open the filename under cursor
-    "   'i'   includes: find files that include the filename under cursor
-    "   'd'   called: find functions that function under cursor calls
-
-    nmap <C-\>s :vert :cs find s <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-\>g :vert :cs find g <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-\>c :vert :cs find c <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-\>t :vert :cs find t <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-\>e :vert :cs find e <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-\>f :vert :cs find f <C-R>=expand("<cfile>")<CR><CR>	
-    nmap <C-\>i :vert :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-\>d :vert :cs find d <C-R>=expand("<cword>")<CR><CR>	
-
-    nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
-    nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
-    nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
-
-    function! GENCS()
-        silent! execute "!find `pwd` -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
-        silent! execute "!cscope -b"
-        if filereadable("cscope.out")
-            execute "cs add cscope.out"
-        endif
-    endf
-    silent! execute "cs add ~/.vim/cscope.out"
-endif
-
-
-let g:clang_auto_select=1
-let g:clang_complete_auto=0
-let g:clang_complete_copen=1
-let g:clang_hl_errors=1
-let g:clang_periodic_quickfix=0
-let g:clang_snippets=1
-let g:clang_snippets_engine="clang_complete"
-let g:clang_conceal_snippets=1
-let g:clang_exec="clang"
-let g:clang_user_options=""
-let g:clang_auto_user_options="path, .clang_complete"
-let g:clang_use_library=1
-"let g:clang_library_path="/directory/of/libclang.so/"
-let g:clang_sort_algo="priority"
-let g:clang_complete_macros=1
-let g:clang_complete_patterns=0
-nnoremap <Leader>q :call g:ClangUpdateQuickFix()<CR>
-
-let g:clic_filename="/database/src/webkit-1.9.4/Source/index.db"
-nnoremap <Leader>r :call ClangGetReferences()<CR>
-nnoremap <Leader>d :call ClangGetDeclarations()<CR>
-nnoremap <Leader>s :call ClangGetSubclasses()<CR>
-
-
 
 
 set showtabline=2  " 0, 1 or 2; when to use a tab pages line
@@ -482,9 +366,6 @@ function AutoCopyright()
     echohl WarningMsg | echo "Successful in adding the copyright." | echohl None
 endf
 
-map <leader>d :!clear;git diff %<CR>
-map <leader>bd :!clear;git diff base-version %<CR>
-
 function! Sdcv()  
     let expl=system('sdcv -n ' .  
                 \  expand("<cword>"))  
@@ -496,7 +377,6 @@ function! Sdcv()
     1s/^/\=expl/  
     1  
 endfunction  
-
 nmap <C-k> :call Sdcv()<CR>
 
 " load license personal settings
@@ -504,18 +384,8 @@ let g:T_AUTHOR = "snyh"
 let g:T_AUTHOR_EMAIL = "snyh@snyh.org"
 let g:T_DATE_FORMAT = "%c"
 
-" maybe you need following settings to 
-" fast input template information not defined
-"  in formate of <+template+>
-nnoremap <C-j> /<+.\{-1,}+><CR>c/+>/e<CR>
-inoremap <C-j> <ESC>/<+.\{-1,}+><CR>c/+>/e<CR>
-
-"let g:devhelpSearch=1
-"let g:devhelpSearchKey = '<F1>'
-"let g:devhelpAssistant=1
-"set updatetime=150
-"let g:devhelpWordLength = 5
-
-
 set listchars=tab:>-,trail:-
 set list
+
+let g:linemovement_up="<c-sh-k>"
+let g:linemovement_up="<c-sh-j>"
