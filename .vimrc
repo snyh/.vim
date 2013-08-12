@@ -4,6 +4,16 @@ set nocompatible
 let mapleader = ","
 let g:mapleader = ","
 
+set listchars=tab:>-,trail:-
+set list
+set history=700
+set autochdir
+
+" Set to auto read when a file is changed from the outside
+set autoread
+autocmd! bufwritepost .vimrc source %
+
+
 "---------------------begin of vundle -------------------
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -14,25 +24,26 @@ Bundle 'gmarik/vundle'
 Bundle 'ctrlp.vim'
 Bundle 'opengl.vim'
 Bundle 'OpenGLSL'
+Bundle 'motemen/git-vim'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'Blackrush/vim-gocode'
 
 filetype plugin indent on
 "----------------------end of vundle----------------------
 
+""""""""""""""""""""""""""""""
+" => Vim ack
+""""""""""""""""""""""""""""""
+nmap <leader>ac :Ack "<cword>"
+nmap <leader>ack :Ack "<cword>" <cr>
 
-" Sets how many lines of history VIM has to remember
-set history=700
-set autochdir
+map <leader>q :only<cr>
 
 setlocal spell spelllang=en_us
 hi SpellBad guisp=red gui=undercurl guifg=NONE guibg=NONE ctermfg=red ctermbg=NONE term=underline cterm=underline
 hi SpellCap guisp=yellow gui=undercurl guifg=NONE guibg=NONE ctermfg=yellow ctermbg=NONE term=underline cterm=underline
 hi SpellRare guisp=blue gui=undercurl guifg=NONE guibg=NONE ctermfg=yellow ctermbg=NONE term=underline cterm=underline
 hi SpellLocal guisp=orange gui=undercurl guifg=NONE guibg=NONE ctermfg=yellow ctermbg=NONE term=underline cterm=underline
-
-" Set to auto read when a file is changed from the outside
-set autoread
-
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -85,70 +96,16 @@ set smarttab
 
 set lbr
 set tw=500
-
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
-
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-" Really useful!
-"  In visual mode when you press * or # to search for the current selection
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>
-
-" When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSearch('gv')<CR>
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 " Tab configuration
 map <leader>tn :tabnew<cr>
 map <leader>te :tabedit
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
-
-" When pressing <leader>cd switch to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>
-
-
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
-
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
-
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
-
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
-endfunction
-
-" Specify the behavior when switching between buffers 
-try
-  set switchbuf=usetab
-  set stal=2
-catch
-endtry
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Remap VIM 0
-map 0 ^
-
-set guitablabel=%t
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Cope
@@ -157,33 +114,6 @@ set guitablabel=%t
 map <leader>cc :botright cope<cr>
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
-
-
-""""""""""""""""""""""""""""""
-" => bufExplorer plugin
-""""""""""""""""""""""""""""""
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerShowRelativePath=1
-map <leader>o :BufExplorer<cr>
-
-
-""""""""""""""""""""""""""""""
-" => Minibuffer plugin
-""""""""""""""""""""""""""""""
-let g:miniBufExplModSelTarget = 1
-let g:miniBufExplorerMoreThanOne = 2
-let g:miniBufExplModSelTarget = 0
-let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplVSplit = 25
-let g:miniBufExplSplitBelow=1
-
-let g:bufExplorerSortBy = "name"
-
-autocmd BufRead,BufNew :call UMiniBufExplorer
-
-map <leader>u :TMiniBufExplorer<cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Omni complete functions
@@ -271,13 +201,6 @@ function! JavaScriptFold()
     endfunction
     setl foldtext=FoldText()
 endfunction
-
-
-""""""""""""""""""""""""""""""
-" => Vim grep
-""""""""""""""""""""""""""""""
-let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
-set grepprg=/bin/grep\ -nH
 
 """""""""""""""""""""""""""""""
 " =>  rfc
@@ -388,8 +311,3 @@ let g:T_AUTHOR = "snyh"
 let g:T_AUTHOR_EMAIL = "snyh@snyh.org"
 let g:T_DATE_FORMAT = "%c"
 
-set listchars=tab:>-,trail:-
-set list
-
-let g:linemovement_up="<c-sh-k>"
-let g:linemovement_up="<c-sh-j>"
