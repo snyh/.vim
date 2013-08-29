@@ -27,6 +27,8 @@ Bundle 'OpenGLSL'
 Bundle 'motemen/git-vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'Blackrush/vim-gocode'
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
 
 filetype plugin indent on
 "----------------------end of vundle----------------------
