@@ -26,9 +26,12 @@ Bundle 'opengl.vim'
 Bundle 'OpenGLSL'
 Bundle 'motemen/git-vim'
 Bundle 'Valloric/YouCompleteMe'
+let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
+
+Bundle 'kchmck/vim-coffee-script'
 
 filetype plugin indent on
 "----------------------end of vundle----------------------
