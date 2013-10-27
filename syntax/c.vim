@@ -19,5 +19,6 @@ runtime! syntax/dbusglib.vim
 runtime! syntax/gio.vim
 runtime! syntax/gobjectintrospection.vim
 runtime! syntax/xlib.vim
+runtime! syntax/gstreamer.vim
 
 " vim: set ft=vim :

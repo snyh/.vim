@@ -5,7 +5,6 @@ let mapleader = ","
 let g:mapleader = ","
 
 set listchars=tab:>-,trail:-
-set list
 set history=700
 set autochdir
 
@@ -26,7 +25,7 @@ Bundle 'opengl.vim'
 Bundle 'OpenGLSL'
 Bundle 'motemen/git-vim'
 Bundle 'Valloric/YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
@@ -164,6 +163,7 @@ au FileType python syn keyword pythonDecorator True None False self
 au FileType python setlocal et sta sw=4 sts=4
 au FileType python setlocal foldmethod=indent
 au FileType python nmap <buffer>  <F2> :!clear;python2 %<CR>
+au FileType python set list
 au BufNewFile,BufRead *.cfg set syntax=python
 nnoremap <space> za
 vnoremap <space> zf
