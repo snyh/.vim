@@ -13,6 +13,8 @@ set autoread
 autocmd! bufwritepost .vimrc source %
 
 
+autocmd! bufwritepost *.go Fmt
+
 "---------------------begin of vundle -------------------
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -93,7 +95,6 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set expandtab
 set shiftwidth=4
 set tabstop=8
 set smarttab
@@ -164,6 +165,7 @@ au FileType python setlocal et sta sw=4 sts=4
 au FileType python setlocal foldmethod=indent
 au FileType python nmap <buffer>  <F2> :!clear;python2 %<CR>
 au FileType python set list
+au FileType python set expandtab
 au BufNewFile,BufRead *.cfg set syntax=python
 nnoremap <space> za
 vnoremap <space> zf
@@ -171,6 +173,7 @@ set foldlevelstart=99
 set foldnestmax=2
 
 au BufNewFile,BufRead *.coffee :set list
+au BufNewFile,BufRead *.coffee set expandtab
 
 func! DeleteTrailingWS()
   exe "normal mz"
