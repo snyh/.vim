@@ -14,6 +14,7 @@ autocmd! bufwritepost .vimrc source %
 
 
 autocmd! bufwritepost *.go Fmt
+au FileType go setlocal tabstop=8 shiftwidth=8
 
 "---------------------begin of vundle -------------------
 filetype off
