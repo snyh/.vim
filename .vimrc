@@ -15,6 +15,7 @@ autocmd! bufwritepost .vimrc source %
 
 autocmd! bufwritepost *.go Fmt
 au FileType go setlocal tabstop=8 shiftwidth=8
+au FileType go set completeopt-=preview
 
 "---------------------begin of vundle -------------------
 filetype off
@@ -26,6 +27,9 @@ Bundle 'gmarik/vundle'
 Bundle 'ctrlp.vim'
 Bundle 'opengl.vim'
 Bundle 'OpenGLSL'
+Bundle "Shougo/vimproc"
+Bundle "eagletmt/ghcmod-vim"
+Bundle "peterhoeg/vim-qml"
 Bundle 'motemen/git-vim'
 Bundle 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
@@ -83,6 +87,7 @@ syntax enable "Enable syntax highlight
 set encoding=utf8
 
 set ffs=unix,dos,mac "Default file types
+colorscheme ron
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -150,9 +155,13 @@ inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 """"""""""""""""""""""""""""""
 au FileType c nmap <buffer>  <F2> :!clear;tcc -run `pkg-config --libs-only-l --cflags-only-I gtk+-3.0 dbus-glib-1 gio-2.0 gstreamer-1.0` -lsqlite3 -lX11 -lXext -lxcb -lGLEW %<CR>
 
-au FileType go nmap <buffer>  <F2> :!clear;go run %<CR>
+au FileType go nmap <buffer>  <F2> :!clear;go run *.go<CR>
+
+au FileType haskell nmap <buffer>  <F2> :!runghc %<CR>
 
 au FileTYpe dot nmap <buffer> <F2> :!dot -Tjpg % -o %."jpg"<CR>
+
+nmap <F1> :make<CR>
 
 
 """"""""""""""""""""""""""""""
@@ -320,3 +329,6 @@ let g:T_AUTHOR = "snyh"
 let g:T_AUTHOR_EMAIL = "snyh@snyh.org"
 let g:T_DATE_FORMAT = "%c"
 
+
+
+au FileType qml nmap <buffer>  <F2> :!qmlscene %<CR>
