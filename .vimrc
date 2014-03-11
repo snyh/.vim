@@ -41,6 +41,10 @@ Bundle 'kchmck/vim-coffee-script'
 
 Bundle 'scrooloose/syntastic'
 
+
+Bundle "Easymotion"
+let g:EasyMotion_leader_key='<Leader>'
+
 filetype plugin indent on
 "----------------------end of vundle----------------------
 
