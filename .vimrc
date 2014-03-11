@@ -22,8 +22,6 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
-
 Bundle 'ctrlp.vim'
 Bundle 'opengl.vim'
 Bundle 'OpenGLSL'
@@ -37,7 +35,11 @@ Bundle 'Blackrush/vim-gocode'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 
+Bundle 'airblade/vim-gitgutter'
+
 Bundle 'kchmck/vim-coffee-script'
+
+Bundle 'scrooloose/syntastic'
 
 filetype plugin indent on
 "----------------------end of vundle----------------------
