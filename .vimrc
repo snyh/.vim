@@ -32,6 +32,10 @@ Bundle 'motemen/git-vim'
 Bundle 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 Bundle 'Blackrush/vim-gocode'
+Bundle 'dgryski/vim-godef'
+let g:godef_split=2
+let g:godef_same_file_in_same_window=1
+
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 
