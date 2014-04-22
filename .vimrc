@@ -45,6 +45,13 @@ Bundle 'kchmck/vim-coffee-script'
 
 Bundle 'scrooloose/syntastic'
 
+Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
+
+Bundle "po.vim"
+Bundle 'christoomey/vim-tmux-navigator'
+
+Bundle "tkztmk/vim-vala"
 
 Bundle "Easymotion"
 let g:EasyMotion_leader_key='<Leader>'
@@ -163,7 +170,7 @@ inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 """"""""""""""""""""""""""""""
 " => C section
 """"""""""""""""""""""""""""""
-au FileType c nmap <buffer>  <F2> :!clear;tcc -run `pkg-config --libs-only-l --cflags-only-I gtk+-3.0 dbus-glib-1 gio-2.0 gstreamer-1.0` -lsqlite3 -lX11 -lXext -lxcb -lGLEW %<CR>
+au FileType c nmap <buffer>  <F2> :!clear;tcc -run `pkg-config --libs-only-l --cflags-only-I gtk+-3.0 dbus-glib-1 gio-2.0 gstreamer-1.0` -lsqlite3 -lX11 -lXext -lxcb -lGLEW -lEGL %<CR>
 
 au FileType go nmap <buffer>  <F2> :!clear;go run *.go<CR>
 
@@ -341,4 +348,5 @@ let g:T_DATE_FORMAT = "%c"
 
 
 
-au FileType qml nmap <buffer>  <F2> :!qmlscene %<CR>
+au FileType qml nmap <buffer>  <F2> :!qmlscene % -I .<CR>
+au FileType qml setlocal tabstop=4 shiftwidth=4

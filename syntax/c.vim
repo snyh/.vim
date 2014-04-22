@@ -15,7 +15,6 @@ runtime! syntax/gdkpixbuf.vim
 runtime! syntax/gtk.vim
 runtime! syntax/gimp.vim
 runtime! syntax/cairo.vim
-runtime! syntax/dbusglib.vim
 runtime! syntax/gio.vim
 runtime! syntax/gobjectintrospection.vim
 runtime! syntax/xlib.vim
